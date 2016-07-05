@@ -1,6 +1,5 @@
 #define _GNU_SOURCE
 #include <unistd.h>
-//#include <fcntl.h>
 #include <sys/syscall.h>
 #include <linux/memfd.h>
 #include <linux/fcntl.h>
