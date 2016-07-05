@@ -1,14 +1,14 @@
-CXXFLAGS += -std=c++11 -Wall -Wextra -Wpedantic
+CFLAGS += -Wall -Wextra -Wpedantic
 
 .PHONY: clean test
 
 test: pexec
 	@echo -e "\nIf you can see 'Hello World' being printed, the test is successfull\n"
-	printf '#include <iostream>\n int main(){ std::cout << "Hello World\\n"; return 0; }' \
-	    | $(CXX) $(CXXFLAGS) -xc++ - -o /dev/stdout | ./pexec
+	printf '#include <stdio.h>\n int main(){ puts("Hello World\\n"); return 0; }' \
+	    | $(CC) $(CFLAGS) -xc - -o /dev/stdout | ./pexec
 
 %: %.c
-	$(CXX) $(CXXFLAGS) $(LDFLAGS) $< -o $@
+	$(CC) $(CFLAGS) $(LDFLAGS) $< -o $@
 
 clean:
-	rm pexec -vf
+	rm -vf pexec
